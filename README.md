@@ -26,8 +26,10 @@ addSbtPlugin("com.terradatum" % "sbt-docker-helper" % "0.4.0-SNAPSHOT")
    
    This is necessary in the event you need to create integration scripts which target a local image:
    ```
-   docker run some-server:1.0.0 # easy
-   docker run $(ipconfig getifaddr en0)/some-server:1.0.0 # works for mac, not for windows or linux - also interface-dependent
+   # easy
+   docker run some-server:1.0.0
+   # works for mac, not for windows or linux - also interface-dependent
+   docker run $(ipconfig getifaddr en0)/some-server:1.0.0
    ```
 
 2. As a result of #1, this plugin will now tag the image properly before the `docker:publish` task.
