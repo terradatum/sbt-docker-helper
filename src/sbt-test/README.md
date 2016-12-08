@@ -1,0 +1,1 @@
+Copied with small modifications from [sbt-native-packager](https://github.com/sbt/sbt-native-packager/tree/master/src/sbt-test/docker)
