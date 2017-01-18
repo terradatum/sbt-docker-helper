@@ -5,7 +5,7 @@ env.JRE_MAJOR = 8
 env.JRE_UPDATE = 25
 
 def project() {
-  return 'terradatum/sbt-docker-help'
+  return 'terradatum/sbt-docker-helper'
 }
 
 def branch() {
