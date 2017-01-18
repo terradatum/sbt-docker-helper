@@ -69,18 +69,8 @@ def void other() {
 
 def Version cleanAndGetVersion() {
   stage 'clean'
-  withSbt {
-    args = 'clean'
-    jdkName = jdkName()
-    sbtName = sbtName()
-  }
-
-  stage 'update'
-  withSbt {
-    args = 'update'
-    jdkName = jdkName()
-    sbtName = sbtName()
-  }
+  // better solution than clean - doesn't require loading sbt
+  shell 'find . -name target -type d -prune -exec rm -rf {} +'
 
   stage 'versioning'
   Version projectVersion = getProjectVersion {
