@@ -1,4 +1,0 @@
-# Stage the distribution and ensure files show up.
-> docker:stage
-$ exists target/docker/stage/Dockerfile
-$ exists target/docker/stage/opt
