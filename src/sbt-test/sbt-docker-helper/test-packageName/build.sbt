@@ -2,10 +2,10 @@ enablePlugins(JavaAppPackaging)
 
 name := "docker-test"
 
+version := "0.1.0"
+dockerExecCommand := Seq("sudo", "docker")
 // packageName := "docker-package" // sets the executable script, too
 packageName in Docker := "docker-package"
-
-version := "0.1.0"
 
 maintainer := "Gary Coady <gary@lyranthe.org>"
 
