@@ -7,7 +7,7 @@ lazy val `sbt-docker-helper` = (project in file(".")).
     organization := "com.terradatum",
     name := "sbt-docker-helper",
     description := "sbt-native-packager Docker plugin helper",
-    version := "0.7.0",
+    version := "0.7.0-SNAPSHOT",
     scalaVersion := "2.10.6",
     addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.2.0-M8"),
     // scripted test settings
