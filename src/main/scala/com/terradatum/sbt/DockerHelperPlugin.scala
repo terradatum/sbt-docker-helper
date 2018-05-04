@@ -6,7 +6,10 @@ import com.typesafe.sbt.packager.docker.{DockerAlias, DockerPlugin}
 import com.typesafe.sbt.packager.docker.DockerPlugin.autoImport._
 import com.typesafe.sbt.packager.universal.UniversalPlugin.autoImport.stage
 import sbt.Keys._
-import sbt.{Process, _}
+import sbt._
+
+// sbt.Process has been deprecated in 1.1.1, use the equivalent in Scala
+import scala.sys.process.{Process, ProcessLogger}
 
 /*
  * This helper plugin manipulates the behavior of the [[com.typesafe.sbt.packager.DockerPlugin]] in the following ways
@@ -93,13 +96,18 @@ object DockerHelperPlugin extends AutoPlugin {
     }
   }
 
+  // add methods to match signature of scala.sys.process.ProcessLogger
   private[this] def logger(log: Logger) = {
     new ProcessLogger {
-      def error(err: => String) = {
+      def err(err: => String) = {
         err match {
           case s if !s.trim.isEmpty => log.error(s)
           case s =>
         }
+      }
+      def out(output: => String) = output match{
+        case s if !s.trim.isEmpty => log.info(s)
+        case s =>
       }
 
       def info(inf: => String) = inf match {
