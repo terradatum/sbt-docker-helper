@@ -2,7 +2,7 @@
 import com.terradatum.jenkins.workflow.*
 
 env.JRE_MAJOR = 8
-env.JRE_UPDATE = 102
+env.JRE_UPDATE = 144
 
 def project() {
   return 'terradatum/sbt-docker-helper'
