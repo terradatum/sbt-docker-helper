@@ -7,28 +7,18 @@ lazy val `sbt-docker-helper` = (project in file(".")).
     organization := "com.terradatum",
     name := "sbt-docker-helper",
     description := "sbt-native-packager Docker plugin helper",
-    version := "0.7.0-SNAPSHOT",
-    scalaVersion := "2.10.6",
-    addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.2.0-M8"),
+    version := "0.8.0-SNAPSHOT",
+    scalaVersion := "2.12.6",
+    addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.3.4"),
     // scripted test settings
-    scriptedSettings,
     scriptedBufferLog := false,
-    scriptedLaunchOpts ++= sys.process.javaVmArguments.filter(
-      a => Seq(
-        "-Xmx",
-        "-Xms",
-        "-XX",
-        "-Dsbt.ivy.home",
-        "-Dsbt.boot.directory",
-        "-Dsbt.boot.properties",
-        "-Dsbt.log.noformat").exists(a.startsWith)
-    ),
-    scriptedLaunchOpts ++= Seq(
-      "-Dplugin.version=" + version.value
-    ),
+    scriptedLaunchOpts := { scriptedLaunchOpts.value ++
+      Seq("-Xmx1024M", "-Dplugin.version=" + version.value)
+    },
+
     libraryDependencies ++= Seq(
-      "ch.qos.logback" % "logback-classic" % "1.1.3",
-      "org.scalatest" %% "scalatest" % "2.2.4" % "test"
+      "ch.qos.logback" % "logback-classic" % "1.2.3",
+      "org.scalatest" %% "scalatest" % "3.0.5" % "test"
     ),
 
     mainClass in(Compile, run) := Some("com.terradatum.sbt.docker.Main"),
