@@ -7,6 +7,7 @@ import com.typesafe.sbt.packager.docker.DockerPlugin.autoImport._
 import com.typesafe.sbt.packager.universal.UniversalPlugin.autoImport.stage
 import sbt.Keys._
 import sbt._
+import sbt.Logger
 
 // sbt.Process has been deprecated in 1.1.1, use the equivalent in Scala
 import scala.sys.process.{Process, ProcessLogger}
@@ -22,7 +23,7 @@ import scala.sys.process.{Process, ProcessLogger}
  */
 object DockerHelperPlugin extends AutoPlugin {
 
-  override def requires = DockerPlugin
+  override def requires: DockerPlugin.type = DockerPlugin
 
   override lazy val projectSettings: Seq[Def.Setting[_]] = inConfig(Docker)(dockerSettings)
 
