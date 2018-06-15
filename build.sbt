@@ -3,6 +3,7 @@ import sbt.ScriptedPlugin._
 sbtPlugin := true
 
 lazy val `sbt-docker-helper` = (project in file(".")).
+  enablePlugins(ScriptedPlugin).
   settings(
     organization := "com.terradatum",
     name := "sbt-docker-helper",
